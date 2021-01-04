@@ -6,28 +6,21 @@ type: docker
 steps:
   - name: build
     image: node:12
+    commands:
+      - yarn install
+      - yarn lint
+      - yarn test
+      - yarn build
+
+  - name: publish
+    image: plugins/npm
     environment:
       GITHUB_TOKEN:
         from_secret: github_token
       NPM_TOKEN:
         from_secret: npm_token
     commands:
-      - yarn install
-      - yarn lint
-      - yarn test
-      - yarn build
       - npx semantic-release
-
-  # - name: publish
-  #   image: plugins/npm
-  #   settings:
-  #     token:
-  #       from_secret: npm_token
-  #     email:
-  #       from_secret: npm_email
-  #   when:
-  #     branch:
-  #       - master
 
 trigger:
   event:
