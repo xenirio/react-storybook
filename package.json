@@ -71,6 +71,7 @@
         "rollup-plugin-uglify": "^6.0.4",
         "sass": "^1.26.10",
         "sass-loader": "^10.1.0",
+        "semantic-release": "^17.3.1",
         "style-loader": "^1.3.0",
         "stylelint": "^13.7.0",
         "stylelint-config-prettier": "^8.0.2",
@@ -87,6 +88,14 @@
         "typescript": "^3.9.3",
         "url-loader": "^4.1.1"
     },
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        "@semantic-release/changelog",
+        "@semantic-release/github",
+        "@semantic-release/npm",
+        "@semantic-release/git"
+    ],
     "scripts": {
         "storybook": "cross-env STORYBOOK_DISPLAY_WARNING=true DISPLAY_WARNING=true start-storybook -p 3001 -s ./static --no-dll",
         "start": "start-storybook -p 3001 -s ./static",
@@ -94,8 +103,8 @@
         "stylelint": "npx stylelint \"**/*.{scss}\"",
         "stylelint:fix": "npx stylelint \"**/*.{scss}\" --fix",
         "build": "rollup -c",
-        "lint": "stylelint \"**/*.{scss}\" && eslint --max-warnings 0 --ext .js,.jsx,.ts,.tsx src/",
-        "lint:fix": "stylelint \"src/**/*.(scss)\" --fix && eslint --ext .js,.jsx,.ts,.tsx src/ --fix",
+        "lint": "stylelint \"src/**/*.scss\" && eslint --max-warnings 0 --ext .js,.jsx,.ts,.tsx src/",
+        "lint:fix": "stylelint \"src/**/*.scss\" --fix && eslint --ext .js,.jsx,.ts,.tsx src/ --fix",
         "lint-quiet": "eslint --ext .js,.jsx,.ts,.tsx src/ --quiet",
         "test": "jest --config jest.config.js --coverage --maxWorkers=2",
         "update-snap": "jest --updateSnapshot",
